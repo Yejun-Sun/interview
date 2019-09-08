@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柯里化</title>
+</head>
+<body>
+<script>
+    //fn 函数
+    //context 指定环境
+    // function bind(fn, context) {
+    //     return function () {
+    //         return fn.apply(context, arguments);
+    //     }
+    // }
+    // function add(num1, num2, num3) {
+    //     return num1 + num2 + num3;
+    // }
+    // function curry(fn) {
+    //     console.log('arguments-----', arguments);
+    //     var args = Array.prototype.slice.call(arguments, 1);
+    //     return function () {
+    //         var innerArgs = Array.prototype.slice.call(arguments);
+    //         console.log('innerArgs-----', innerArgs);
+    //         var finalArgs = args.concat(innerArgs);
+    //         console.log('finalArgs-----', finalArgs);
+    //         return fn.apply(null, finalArgs);
+    //     }
+    // }
+    // function add(num1, num2, num3) {
+    //     return num1 + num2 + num3;
+    // }
+    function curry(fn) {
+        //将传入的参数转化为数组，从索引 1 开始至最后
+        // args ------> fn, 5, 12
+        let args = Array.prototype.slice.call(arguments, 1);
+        return function () {
+            //用来存放所有传入的参数，将参数转化为数组
+            //innerArgs ------> 4
+            let innerArgs = Array.prototype.slice.call(arguments);
+            //将外部传入的参数和内部参数合并
+            //finalArgs ------> 5, 12, 4
+            let finalArgs = args.concat(innerArgs);
+            //null 可替换为相应执行环境
+            return fn.apply(null, finalArgs);
+        }
+    }
+    // var curried = curry(add, 5, 12);
+    // //补齐参数才能正常输出
+    // console.log(curried(4));
+    //
+    // function bind(fn, context) {
+    //     let args = Array.prototype.slice.call(arguments, 2);
+    //     return function () {
+    //         let innerArgs = Array.prototype.slice.call(arguments);
+    //         let finalArgs = args.concat(innerArgs);
+    //         return fn.apply(context, finalArgs);
+    //     }
+    // }
+
+</script>
+</body>
+</html>

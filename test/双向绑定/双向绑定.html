@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定</title>
+</head>
+<body>
+<input type="text" id="aa"/>
+<p id="bb"></p>
+<script>
+    // let obj = {};
+    // Object.defineProperty(obj, 'hello', {
+    //     set: function (val) {
+    //         document.getElementById('bb').innerHTML = val;
+    //         document.getElementById('aa').value = val;
+    //     }
+    // });
+    // document.getElementById('aa').onkeyup = function (e) {
+    //     obj.hello = e.target.value;
+    // };
+    // obj.hello = '';
+    let input = document.querySelector('input');
+    let p = document.querySelector('#bb');
+
+    let data = {text: 'hello'};
+
+    let handler = {
+        set: function (target, key, value) {
+            if (key === 'text') {
+                target[key] = value;
+                p.innerHTML = value
+            } else {
+                alert('error');
+            }
+        }
+    };
+    let proxy = new Proxy(data, handler);
+    console.log(proxy)
+    input.oninput = function (e) {
+        proxy.text = e.target.value;
+    }
+</script>
+</body>
+</html>

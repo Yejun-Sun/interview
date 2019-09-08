@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉搜索树的第k个结点</title>
+</head>
+<body>
+<script>
+    function KthNode(pRoot, k) {
+        if (pRoot === null || k < 1) return null;
+        let arr = [];
+        let res = inorder(pRoot, arr);
+        if (k > res.length) return null;
+        return res[k - 1];
+    }
+    function inorder(root, arr) {
+        if (root !== null) {
+            inorder(root.left, arr);
+            arr.push(root);
+            inorder(root.right, arr);
+            return arr;
+        }
+        return null;
+    }
+</script>
+</body>
+</html>

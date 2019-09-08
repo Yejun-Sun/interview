@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由</title>
+</head>
+<body>
+<script>
+    //页面路由
+    window.location.href = 'http://www,baidu.com';
+    history.back();
+
+    //hash 路由
+    window.location = '#hash';
+    window.onhashchange = function () {
+        console.log('current hash', window.location.hash);
+    };
+
+    //h5 路由
+    //推进一个状态
+    history.pushState('name', 'title', './path');
+    //替换一个状态
+    history.replaceState('name', null, './index');
+    //popstate
+    window.onpopstate = function () {
+        //取路由路径，全路径
+        console.log(window.location.href);
+        //绝对路径
+        console.log(window.location.pathname);
+        //哈希路径
+        console.log(window.location.hash);
+        console.log(window.location.search)
+    }
+</script>
+</body>
+</html>

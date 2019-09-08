@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>121. 买卖股票的最佳时机</title>
+</head>
+<body>
+<script>
+    var maxProfit = function(prices) {
+        let min = Number.MAX_SAFE_INTEGER, max = 0;
+        for (let i = 0; i < prices.length; i++) {
+            min = Math.min(min, prices[i]);
+            max = Math.max(max, prices[i] - min);
+        }
+        return max;
+    };
+</script>
+</body>
+</html>

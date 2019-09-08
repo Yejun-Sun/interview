@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>懒加载</title>
+</head>
+<style>
+    .img {
+        width: 500px;
+        height: 400px;
+    }
+</style>
+<body>
+<ul>
+    <!--src设置为默认图片，data为需要加载的图片-->
+    <li><img class="img" src="./dog.jpg" data="./picture.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture1.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture2.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture3.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture4.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture5.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture6.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture7.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture8.jpg" alt=""></li>
+    <li><img class="img" src="./dog.jpg" data="./picture9.jpg" alt=""></li>
+</ul>
+
+<script>
+    let imgs =  document.querySelectorAll('img');
+    // 可视区高度
+    let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    function lazyLoad () {
+        // 滚动卷去的高度
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        console.log(scrollTop);
+        for (let i = 0; i < imgs.length; i++) {
+            // 图片在可视区冒出的高度
+            //offsetTop 距离上层空间的高度
+            let x = clientHeight + scrollTop - imgs[i].offsetTop;
+            // 图片在可视区内
+            if (x > 0 && x < clientHeight+imgs[i].height) {
+                imgs[i].src = imgs[i].getAttribute('data')
+            }
+        }
+    }
+    addEventListener('scroll', lazyLoad) ;
+    // setInterval(lazyLoad, 1000)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+</head>
+<body>
+<div style="width: 800px; height: 400px; border: black solid"
+     ondrop="drop(event)"
+     ondragover="dragover(event)"
+></div>
+<div style="width: 800px; height: 400px; border: black solid; margin-top: 20px"
+     ondrop="drop(event)"
+     ondragover="dragover(event)"
+></div>
+<img id="img" src="dog.jpg" style="width: 500px; height: 300px; margin: 20px" draggable="true"
+     ondragstart="dragstart(event)"
+/>
+<script>
+function drop(e) {
+    e.preventDefault();  //放置事件的默认行为是打开放置目标上的url，取消默认行为
+    let id = e.dataTransfer.getData('id');
+    e.target.appendChild(document.getElementById(id))
+}
+function dragover(e) {
+    e.preventDefault();
+}
+function dragstart(e) {
+    e.dataTransfer.setData('id', e.target.id);  //传递数据
+}
+// let div = document.querySelectorAll('div');
+// console.log(div);
+let arr = ['a', 'b', 'c'];
+console.log(arr.keys());
+// for (let index of arr.values()) {
+//     console.log(index);
+// }
+// let obj = {
+//     a: function () {
+//         console.log(1);
+//     }
+// };
+// console.log(Object.getOwnPropertyDescriptor(obj, 'a'));
+</script>
+</body>
+</html>

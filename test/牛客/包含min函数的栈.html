@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包含min函数的栈</title>
+</head>
+<body>
+<script>
+    let stack = [];
+    function push(node) {
+        stack.push(node);
+    }
+    function pop() {
+        stack.pop();
+    }
+    function top() {
+        return stack[stack.length-1];
+    }
+    function min() {
+        return Math.min(...stack);
+    }
+</script>
+</body>
+</html>

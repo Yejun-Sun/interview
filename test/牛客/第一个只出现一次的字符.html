@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一个只出现一次的字符</title>
+</head>
+<body>
+<script>
+    function FirstNotRepeatingChar(str) {
+        for (let i = 0; i < str.length; i++) {
+            let left = str.indexOf(str[i]);
+            let right = str.lastIndexOf(str[i]);
+            if (left === right) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    console.log(FirstNotRepeatingChar('google'));
+</script>
+</body>
+</html>

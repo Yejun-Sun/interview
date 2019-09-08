@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    /* ------------第一种 float布局------------*/
+    /*.left {*/
+        /*float: left;*/
+        /*background: red;*/
+        /*width: 300px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+    /*.right{*/
+        /*background: green;*/
+        /*height: 500px;*/
+        /*!*以下两条加上比较好，不加左右两个区域在左边是重叠的，*/
+        /**加上以后左右没有重叠部分*/
+        /**!*/
+        /*!*width: 100%;*!*/
+        /*margin-left: 300px;*/
+    /*}*/
+
+    /* ------------第二种 float布局------------*/
+    /*.left {*/
+        /*!*position: relative;*!*/
+        /*float: left;*/
+        /*background: red;*/
+        /*width: 100px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+        /*!*left: -9999px;*!*/
+        /*!*margin-left: -9999px;*!*/
+        /*!*transform: rotateZ(90deg);*!*/
+    /*}*/
+    /*.right{*/
+        /*background: green;*/
+        /*height: 500px;*/
+        /*!*float: left;*!*/
+        /*!*以下两条加上比较好，不加左右两个区域在左边是重叠的，*/
+        /**加上以后左右没有重叠部分*/
+        /**!*/
+        /*width: calc(100% - 100px);*/
+        /*!*margin-left: 100px;*!*/
+        /*float: left;*/
+    /*}*/
+
+    /* -------------第三种 flex布局-------------*/
+    /*.container {*/
+        /*display: flex;*/
+    /*}*/
+    /*.left {*/
+        /*background: red;*/
+        /*width: 100px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+    /*.right{*/
+        /*background: green;*/
+        /*flex: 1;*/
+        /*height: 500px;*/
+    /*}*/
+
+    /* ----------------第四种--------------*/
+    .left {
+        background: red;
+        width: 100px;
+        height: 500px;
+        float: left;
+        opacity: 0.5;
+    }
+    .right{
+        overflow: hidden;
+        background: green;
+        height: 500px;
+        opacity: 0.5;
+    }
+</style>
+<body>
+<div>
+    <div class="container">
+        <div class="left">左边</div>
+        <div class="right">右边</div>
+    </div>
+</div>
+<script>
+    // let arr = document.getElementsByTagName('ul')[0].firstElementChild;
+    // console.log(arr);
+    // document.getElementById('btn').addEventListener('click', () => {
+    //
+    // });
+    // class Person {
+    //     constructor(name, age) {
+    //         this.name = name;
+    //         //定义私有属性
+    //         let _age = age;
+    //         this.getAge = () => {
+    //             return _age;
+    //         }
+    //     }
+    // }
+    // const Person = (()=>{
+    //     const _age = Symbol('Age');
+    //     class Person{
+    //         constructor(name, age) {
+    //             this.name = name;
+    //             this[_age] = age;
+    //         }
+    //         get age() {
+    //             return this[_age];
+    //         }
+    //     }
+    //     return Person;
+    // })();
+    // const Person = (()=>{
+    //     const _age = new WeakMap();
+    //     class Person{
+    //         constructor(name, age) {
+    //             this.name = name;
+    //             _age.set(this, age);
+    //         }
+    //         get age() {
+    //             return _age.get(this);
+    //         }
+    //     }
+    //     return Person;
+    // })();
+    // const person = new Person('张三', 20);
+    // console.log(person._age); //undefined
+    // console.log(person.age); //20
+    //破绽
+    // console.log(person[Object.getOwnPropertySymbols(person)[0]])//20
+
+
+</script>
+</body>
+</html>

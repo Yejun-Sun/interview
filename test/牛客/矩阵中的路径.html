@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>矩阵中的路径</title>
+</head>
+<body>
+<script>
+    function hasPath(matrix, rows, cols, path) {
+        if (matrix.length === 0 || rows < 1 || cols < 1) return false;
+        let arr = [];
+        for (let i = 0; i < rows; i++) {
+            arr[i] = [];
+            for (let j = 0; j < cols; j++) {
+                arr[i].push(matrix[j]);
+            }
+            matrix = matrix.slice(cols, matrix.length);
+        }
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                if (dfs(arr, i, j, path)) return true;
+            }
+        }
+        return false;
+    }
+    function dfs(matrix, i, j, remain) {
+        if (remain.length === 0) return true;
+        if (i < 0 || i >= matrix.length || j < 0 || j >= matrix[0].length) return false;
+        if (matrix[i][j] !== remain[0]) return false;
+        let char = matrix[i][j];
+        matrix[i][j] = '-';
+        let res = dfs(matrix, i-1, j, remain.substring(1)) || dfs(matrix, i+1, j, remain.substring(1)) ||
+                dfs(matrix, i, j-1, remain.substring(1)) || dfs(matrix, i, j+1, remain.substring(1));
+        matrix[i][j] = char;
+        return res;
+    }
+    console.log(hasPath('ABCESFCSADEE', 3, 4, 'ABCCED'))
+</script>
+</body>
+</html>

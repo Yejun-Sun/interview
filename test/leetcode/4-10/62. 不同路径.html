@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>62. 不同路径</title>
+</head>
+<body>
+<script>
+    var uniquePaths = function(m, n) {
+        if (m === 1 || n === 1) return 1;
+        var arr = [];
+        var i, j;
+
+        for (i = 1; i < m; i++) {
+            for (j = 1; j < n; j++) {
+                arr[j] = (arr[j] || 1) + (arr[j - 1] || 1);
+            }
+        }
+        return arr[n - 1];
+    };
+    console.log(uniquePaths(3, 3));
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>108. 将有序数组转换为二叉搜索树</title>
+</head>
+<body>
+<script>
+    let helper = function (nums, low, high) {
+        if (low > high) return null;
+        let mid = Math.floor((low + (high - low) / 2));
+        let node = new TreeNode(nums[mid]);
+        node.left = helper(nums, low, mid - 1);
+        node.right = helper(nums, mid + 1, high);
+        return node;
+    };
+    var sortedArrayToBST = function(nums) {
+        if (!nums) {
+            return null;
+        }
+        return helper(nums, 0, nums.length - 1);
+    };
+    console.log(0.5>>0)
+</script>
+</body>
+</html>

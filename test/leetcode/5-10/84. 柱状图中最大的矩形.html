@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>84. 柱状图中最大的矩形</title>
+</head>
+<body>
+<script>
+    var largestRectangleArea = function(heights) {
+        if (heights.length === 0) return 0;
+        let stack = [];
+        let max = 0;
+        for (let i = 0; i <= heights.length; i++) {
+            let cur = (i === heights.length) ? -1 : heights[i];
+            while (stack.length !== 0 && cur < heights[stack[stack.length - 1]]) {
+                let index = stack.pop();
+                let h = heights[index];
+                let w = stack.length === 0 ? i : i - stack[stack.length - 1] - 1;
+                max = Math.max(max, h * w);
+            }
+            stack.push(i);
+        }
+        return max;
+    };
+</script>
+</body>
+</html>

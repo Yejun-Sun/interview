@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4. 寻找两个有序数组的中位数</title>
+</head>
+<body>
+<script>
+    function findMedianSortedArrays(nums1, nums2) {
+        let arr = [...nums1, ...nums2];
+        let len = arr.length;
+        arr.sort(function (a, b) {
+            return a-b;
+        });
+        if (len % 2 !== 0) {
+            return arr[Math.floor(len/2)];
+        }else {
+            let res = (arr[len/2 - 1] + arr[len/2])/2;
+            return res;
+        }
+    }
+    console.log(findMedianSortedArrays([1,2], [3, 4]));
+</script>
+</body>
+</html>

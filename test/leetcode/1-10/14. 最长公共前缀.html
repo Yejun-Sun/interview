@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14. 最长公共前缀</title>
+</head>
+<body>
+<script>
+    var longestCommonPrefix = function(strs) {
+        if (strs.length < 1) {
+            return '';
+        }
+        return strs.reduce((prev, curr) => {
+            let i = 0;
+            while (prev[i] && curr[i] && prev[i] === curr[i]) {
+                i++;
+            }
+            return prev.slice(0, i);
+        })
+    };
+    console.log(longestCommonPrefix(['123', '12', '154']));
+</script>
+</body>
+</html>

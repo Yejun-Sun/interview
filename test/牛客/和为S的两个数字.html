@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>和为S的两个数字</title>
+</head>
+<body>
+<script>
+    function FindNumbersWithSum(array, sum) {
+        let left = 0, right = array.length - 1, res = [];
+        while (left < right) {
+            if (array[left] + array[right] === sum) {
+                res.push(array[left], array[right]);
+                break;
+            } else if (array[left] + array[right] > sum) {
+                right--;
+            }else {
+                left++;
+            }
+        }
+        return res;
+    }
+    console.log(FindNumbersWithSum([1,2,3,4,5,6], 9));
+</script>
+</body>
+</html>

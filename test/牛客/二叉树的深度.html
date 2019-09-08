@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树的深度</title>
+</head>
+<body>
+<script>
+    function TreeDepth(pRoot) {
+        if (!pRoot) return 0;
+        return Math.max(TreeDepth(pRoot.left), TreeDepth(pRoot.right)) + 1;
+    }
+</script>
+</body>
+</html>

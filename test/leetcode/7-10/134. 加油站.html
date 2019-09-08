@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>134. 加油站</title>
+</head>
+<body>
+<script>
+    //不对
+    // var canCompleteCircuit = function(gas, cost) {
+    //     for (let j = 0; j < gas.length; j++) {
+    //         let owmGas = 0;
+    //         for (let i = j; i < gas.length; i++) {
+    //             if (j > 0 && i === gas.length - 1) {
+    //                 i = 0;
+    //             }
+    //             if (i === j - 1 && owmGas >= cost[i]){
+    //                 return j;
+    //             }
+    //             owmGas += gas[i];
+    //             if (owmGas < cost[i]) {
+    //                 break;
+    //             }else {
+    //                 owmGas -= cost[i];
+    //             }
+    //         }
+    //     }
+    //     return -1;
+    // };
+    // console.log(canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2]));
+    var canCompleteCircuit = function(gas, cost) {
+        let sGas = gas.reduce((sum, item) => sum + item, 0);
+        let sCst = cost.reduce((sum, item) => sum + item, 0);
+        //expr = return stmt
+        if (sGas < sCst)
+            return -1;
+        let len = gas.length, cap = 0, loc = 0;
+        for (let i = 0; i < len; i++) {
+            cap += gas[i] - cost[i];
+            if (cap < 0) {
+                cap = 0;
+                loc = i + 1;
+            }
+        }
+        return loc
+    };
+</script>
+</body>
+</html>

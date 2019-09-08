@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>54. 螺旋矩阵</title>
+</head>
+<body>
+<script>
+    function* direction() {
+        let count = 0;
+        while (true){
+            count++;
+            yield count % 4
+        }
+    }
+    var spiralOrder = function(matrix) {
+        if(matrix.length === 0) return [];
+        let data = [];
+        let minX = 0, maxX = matrix.length - 1, minY = 0, maxY = matrix[0].length - 1;
+        let x = 0, y = 0;
+        let g = direction();
+        let dire = 0;
+        while (x >= minX && y >= minY && y <= maxY && x <= maxX) {
+            switch (dire) {
+                case 0: {
+                    while (y <= maxY) {
+                        data.push(matrix[x][y]);
+                        y++
+                    }
+                    y--;
+                    x++;
+                    minX++;
+                    break
+                }
+                case 1: {
+                    while (x <= maxX) {
+                        data.push(matrix[x][y]);
+                        x++
+                    }
+                    x--;
+                    y--;
+                    maxY--;
+                    break
+                }
+                case 2: {
+                    while (y >= minY) {
+                        data.push(matrix[x][y]);
+                        y--
+                    }
+                    y++;
+                    x--;
+                    maxX--;
+                    break
+                }
+                case 3: {
+                    while (x >= minX) {
+                        data.push(matrix[x][y]);
+                        x--
+                    }
+                    x++;
+                    y++;
+                    minY++;
+                    break
+                }
+                default: {
+                    break
+                }
+            }
+            dire = g.next().value
+        }
+        return data
+    };
+</script>
+</body>
+</html>

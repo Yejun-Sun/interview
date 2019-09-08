@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平衡二叉树</title>
+</head>
+<body>
+<script>
+    function deep(root) {
+        if (!root) return 0;
+        return Math.max(deep(root.left), deep(root.right)) + 1;
+    }
+    function IsBalanced_Solution(pRoot) {
+        if (!pRoot) return true;
+        let left = deep(pRoot.left);
+        let right = deep(pRoot.right);
+        if (Math.abs(left - right) > 1) {
+            return false;
+        }
+        return IsBalanced_Solution(pRoot.left) && IsBalanced_Solution(pRoot.right);
+    }
+</script>
+</body>
+</html>

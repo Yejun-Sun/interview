@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13. 罗马数字转整数</title>
+</head>
+<body>
+<script>
+    var romanToInt = function(s) {
+        let map = {
+            'I': 1,  //
+            'V': 5,
+            'X': 10,  //
+            'L': 50,
+            'C': 100,  //
+            'D': 500,
+            'M': 1000
+        };
+        let res = 0;
+        for (let i = 0; i < s.length; i++) {
+            if (i < s.length - 1 && (s[i] === 'I' || s[i] === 'X' || s[i] === 'C')) {
+                if (map[s[i + 1]] > map[s[i]]) {
+                    res = res + (map[s[i + 1]] - map[s[i]]);
+                    i++;
+                    continue;
+                }
+            }
+            res += map[s[i]];
+        }
+        return res;
+    };
+    console.log(romanToInt('IVI'));
+</script>
+</body>
+</html>

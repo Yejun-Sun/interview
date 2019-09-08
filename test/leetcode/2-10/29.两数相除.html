@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>29.两数相除</title>
+</head>
+<body>
+<script>
+    var divide = function(dividend, divisor) {
+       if (dividend === 0 || divisor === 0) return 0;
+       let flag = (dividend > 0 === divisor > 0);
+        if (dividend === -2147483648 && divisor === -1) return 2147483647;
+        dividend = Math.abs(dividend);
+       divisor = Math.abs(divisor);
+
+       let res = 0;
+       while (dividend >= divisor) {
+           dividend = dividend - divisor;
+           res++;
+       }
+       // if (res > Math.pow(2, 31)-1 || res < -Math.pow(2, 31))  return Math.pow(2, 31)-1;
+       if (!flag) res = -res;
+       return res;
+    };
+    console.log(divide(10,3));
+</script>
+</body>
+</html>

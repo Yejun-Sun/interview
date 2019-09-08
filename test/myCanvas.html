@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myCanvas</title>
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100" style="border: 1px solid #c3c3c3"></canvas>
+<div style="width: 0px; height: 0px;  border: 10px solid transparent; border-bottom: 10px solid black"></div>
+<script>
+    let c = document.getElementById('myCanvas');
+    let ctx = c.getContext('2d');
+    ctx.fillStyle = 'red';
+    let width = c.width;
+    let height = c.height;
+    //定义小球类
+    function Ball(x, y, r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+    }
+    Ball.prototype = {
+        size: 20,
+        draw: function () {
+            ctx.arc(this.x, this.y, this.r, 0, 2*Math.PI, true);
+            ctx.fill();
+        }
+    };
+    //在原型上定义共享方法
+    // Ball.prototype.draw = function () {
+    //     ctx.arc(this.x, this.y, this.r, 0, 2*Math.PI, true);
+    //     ctx.fill();
+    // };
+    //创建工厂
+    function drawBall() {
+        let x = Math.random()*width;
+        let y = Math.random()*height;
+        let r = Math.random()*10;
+        let ball = new Ball(x, y, r);
+        return ball;
+    }
+    //用工厂绘制小球
+    let ball1 = drawBall();
+    ball1.size = 30;
+    console.log(ball1.size);
+    ball1.draw();
+    let ball2 = drawBall();
+    console.log(ball2.size);
+    ball2.draw();
+    // let c = document.getElementById('myCanvas');
+    // let cxt = c.getContext('2d');
+    // cxt.fillStyle = '#ff0000';
+    // cxt.arc(Math.random()*200, Math.random()*100, 10, 0, Math.PI*2, true);
+    // cxt.fill()
+    function Book(title) {
+        this.title = title;
+    }
+    Book.prototype = {
+        page: 100,
+        getTitle: function (title) {
+            return title;
+        }
+    };
+    function newBook(title) {
+        Book.call(this, title);
+    }
+    newBook.prototype = new Book(123);
+    let book1 = new  Book('设计模式');
+    let book2 = new newBook('设计模式精讲');
+    console.log(book1);
+    console.log(book2);
+</script>
+</body>
+</html>

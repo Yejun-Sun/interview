@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式</title>
+</head>
+<body>
+<script>
+    let CreatPerson = function (name) {
+        this.name = name;
+    };
+    CreatPerson.prototype.getName = function () {
+        console.log(this.name);
+    };
+    let Person = (function () {
+        let person;
+        return function (name) {
+            if (!person) {
+                person = new CreatPerson(name);
+            }
+            return person
+        }
+    })();
+    let person1 = new Person('zhangsan');
+    let person2 = new Person('lisi');
+    console.log(person1 === person2);
+</script>
+</body>
+</html>

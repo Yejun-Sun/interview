@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左旋转字符串</title>
+</head>
+<body>
+<script>
+    function LeftRotateString(str, n) {
+        if (!str || n < 0 || n > str.length) return '';
+        let arr = str.split('');
+        let left = arr.slice(0, n);
+        let right = arr.slice(n, str.length);
+        return [...right, ...left].join('');
+    }
+    console.log(LeftRotateString('abcXYZdef', 3))
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC</title>
+</head>
+<style>
+    /*body {*/
+        /*width: 300px;*/
+        /*position: relative;*/
+        /*background: #dcdcdc;*/
+    /*}*/
+    /*.aside {*/
+        /*width: 100px;*/
+        /*height: 150px;*/
+        /*float: left;*/
+        /*background: #f66;*/
+    /*}*/
+    /*.main {*/
+        /*height: 200px;*/
+        /*background: #fcc;*/
+        /*overflow: hidden;*/
+    /*}*/
+    /*-----------------------------------------------------*/
+    .par {
+        border:  5px solid #f66;
+        width: 300px;
+        /*overflow: hidden;*/
+    }
+    .child {
+        border:  5px solid #fcc;
+        width: 100px;
+        height: 100px;
+        float: left;
+        /*transform: rotateX(90deg);*/
+    }
+    .text {
+        font-size: 10px;
+    }
+    .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+</style>
+<body>
+<!--<div class="aside"></div>-->
+<!--<div class="main"></div>-->
+<!------------------------------------------------------------->
+<div class = 'par clearfix'>
+    <div class="child "><p class="text">123</p></div>
+    <div class="child "></div>
+</div>
+</body>
+</html>

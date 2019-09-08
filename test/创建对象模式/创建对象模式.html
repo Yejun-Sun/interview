@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建对象模式</title>
+</head>
+<body>
+<script>
+    //工厂模式
+    function person(name, age) {
+        let p = new Object();
+        p.name = name;
+        p.age = age;
+        p.getName = function () {
+            console.log(this.name);
+        };
+        return p;
+    }
+    let personA = person('zhangsan', 20);
+
+    //构造函数模式
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.getName = function () {
+            console.log(this.name);
+        }
+    }
+    let person = new Person('zhangsan', 20)
+
+    //原型模式
+    function Person() {}
+    Person.prototype.name = 'zhangsan';
+    Person.prototype.age = 20;
+    Person.prototype.getName = function () {
+        console.log(this.name);
+    };
+    let person = new Person();
+
+    //组合模式（组合构造函数模式和原型模式）
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.getName = function () {
+        console.log(this.name);
+    };
+    Person.prototype.constructor = Person;
+    let person = new Person('zhangsan', 20);
+
+    //动态原型模式
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    if (typeof this.getName !== 'function') {
+        Person.prototype.getName = function () {
+            console.log(this.name);
+        }
+    }
+    let person = new Person('zhangsan', 20);
+    person.getName();
+
+    //寄生构造函数模式
+    function PersonA(job) {
+        let p = new Person();
+        //在不修改原构造函数的情况下，给p添加新的属性和方法
+        p.job = job;
+        p.getJob = function () {
+            console.log(this.job);
+        };
+        return p;
+    }
+    let person = new Person('teacher');
+
+    //稳妥构造函数模式
+    function Person(name, age) {
+        let p = new Object();
+        p.getName = function () {
+            console.log(name);
+        };
+        return p;
+    }
+    let person = Person('zhangsan', 20);
+    person.getName();
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖</title>
+</head>
+<body>
+<button id="btn" onclick="ceshi(1)">点击我</button>
+<script>
+    //非立即执行版
+    // let time;
+    // function fangdou() {
+    //     clearTimeout(time);
+    //     time = setTimeout(() => {
+    //         console.log('防抖函数执行');
+    //     },2000);
+    // }
+
+    //立即执行版
+    // let time;
+    // function fangdou() {
+    //     clearTimeout(time);
+    //     let flag = !time;
+    //     time = setTimeout(() => {
+    //         time = null;
+    //     },2000);
+    //     if (flag) {
+    //        console.log('防抖函数执行');
+    //     }
+    // }
+
+    let time;
+    function fangdou(func, wait) {
+        return function () {
+            clearTimeout(time);
+            let flag = !time;
+            time = setTimeout(() => {
+                time = null;
+            },wait);
+            if (flag) {
+                func();
+            }
+        }
+    }
+    function ceshi(i) {
+        let callback = () => {
+            i++;
+            console.log(i);
+        };
+        return fangdou(callback, 2000)();
+    }
+    // document.onclick = ceshi();
+    // document.getElementById('btn').addEventListener('click', ceshi(1))
+
+    // function throttle(fn, wait){
+    //     let lastTime = 0;
+    //     return function (){
+    //         let nowTime = new Date();
+    //         if(nowTime - lastTime > wait){
+    //             lastTime = nowTime;
+    //             fn.apply(this, arguments)
+    //         }
+    //     }
+    // }
+    // function log(){
+    //     console.log(11);
+    // }
+    // function ceshi() {
+    //     throttle(log, 2000)();
+    // }
+    // document.onclick = throttle(log, 1000)
+</script>
+</body>
+</html>

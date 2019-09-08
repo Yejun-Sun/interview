@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重建二叉树</title>
+</head>
+<body>
+<script>
+    function reConstructBinaryTree(pre, vin) {
+        let res = null;
+        if (pre.length > 1) {
+            let root = pre[0];
+            pre.shift();
+            let index = vin.indexOf(root);
+            let left = vin.slice(0, index);
+            let right = vin.slice(index+1);
+
+            let preLeft = pre.slice(0, index);
+            let preRight = pre.slice(index);
+            res = {
+                val: root,
+                left: reConstructBinaryTree(preLeft, left),
+                right: reConstructBinaryTree(preRight, right)
+            }
+        } else if (pre.length === 1){
+            res = {
+                val: pre[0],
+                left: null,
+                right: null
+            }
+        }
+        return res;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二维数组中的查找</title>
+</head>
+<body>
+<script>
+    function Find(target, array) {
+        let rows = array.length, cols = array[0].length;
+        if (target < array[0][0] || target > array[rows-1][cols-1]) return false;
+        for (let i = 0; i < rows; i++) {
+            if (target >= array[i][0]) {
+                for (let j = 0; j < cols; j++) {
+                    if (target === array[i][j]) return true;
+                }
+            }
+        }
+        return false;
+    }
+    console.log(Find(7,[[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]]))
+</script>
+</body>
+</html>

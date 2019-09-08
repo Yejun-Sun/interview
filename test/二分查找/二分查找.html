@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二分查找</title>
+</head>
+<body>
+<script>
+    let str  = 'ashgufdeb';
+    function erfen(str, target) {
+        let res = str.split('');
+        res.sort((a, b) => b < a);
+        let left = 0, right = res.length-1;
+        while (left <= right) {
+            let mid = Math.floor((right+left)/2);
+            let m = res[mid];
+            if (target === m) {
+                return mid;
+            } else if (target < m) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+    console.log(erfen(str, 'c'));
+
+</script>
+</body>
+</html>

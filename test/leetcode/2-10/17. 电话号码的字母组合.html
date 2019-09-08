@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17. 电话号码的字母组合</title>
+</head>
+<body>
+<script>
+    var letterCombinations = function(digits) {
+        let map = {
+            '2': ['a', 'b', 'c'],
+            '3': ['d', 'e', 'f'],
+            '4': ['g', 'h', 'i'],
+            '5': ['j', 'k', 'l'],
+            '6': ['m', 'n', 'o'],
+            '7': ['p', 'q', 'r', 's'],
+            '8': ['t', 'u', 'v'],
+            '9': ['w', 'x', 'y', 'z']
+        };
+        let rtn = map[digits[0]];
+        digits = digits.substr(1);
+        digits.split('').forEach((digit) => {
+            let t = [];
+            map[digit].forEach((letter) => {
+                t = t.concat(rtn.map((item) => {
+                    return item + letter;
+                }))
+            });
+            rtn = t;
+        });
+        return rtn === undefined ? []: rtn;
+    };
+    console.log(letterCombinations('23'))
+</script>
+</body>
+</html>

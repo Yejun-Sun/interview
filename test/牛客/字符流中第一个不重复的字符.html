@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符流中第一个不重复的字符</title>
+</head>
+<body>
+<script>
+    function Init()
+    {
+        // write code here
+        this.str = '';
+        this.obj = {};
+        this.index = 0;
+    }
+    //Insert one char from stringstream
+    function Insert(ch)
+    {
+        // write code here
+        this.str += ch;
+        if(this.obj[ch]) {
+            this.obj[ch].value++;
+            this.index++;
+        } else{
+            this.obj[ch] = {};
+            this.obj[ch].value = 1;
+            this.obj[ch].index = this.index;
+            this.index++;
+        }
+
+    }
+    //return the first appearence once char in current stringstream
+    function FirstAppearingOnce()
+    {
+        // write code here
+        var str = '';
+        var newObj = this.obj;
+        var ans = Object.keys(newObj).sort(function (a,b) {
+            var valueCompare = newObj[a].value - newObj[b].value;
+            if(valueCompare === 0) {
+                return newObj[a].index - newObj[b].index;
+            }
+            return valueCompare;
+        });
+        if(newObj[ans[0]].value > 1) return '#';
+        return ans[0];
+    }
+</script>
+</body>
+</html>

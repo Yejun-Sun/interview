@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>91. 解码方法</title>
+</head>
+<body>
+<script>
+    var numDecodings = function(s) {
+        let pre1 = 1, pre2 = 1, cur;
+        let n = s.split('').length;
+        if (n === 0 || s[0] === '0') {
+            return 0;
+        }
+        if (n === 1) {
+            return 1;
+        }
+        for (let i = 1; i < n; i++) {
+            let first = s[i];
+            let second = parseInt(s.substr(i - 1, 2));
+            cur = 0;
+            if (1 <= first && first <= 9) {
+                cur += pre1;
+            }
+            if (10 <= second && second <= 26) {
+                cur += pre2;
+            }
+            pre2 = pre1;
+            pre1 = cur;
+        }
+        return cur;
+    };
+    console.log('1' - '0');
+</script>
+</body>
+</html>

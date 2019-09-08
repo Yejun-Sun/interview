@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>和为S的连续正数序列</title>
+</head>
+<body>
+<script>
+    function FindContinuousSequence(sum) {
+        if (sum === 1) return [];
+        if (sum === 3) return [[1, 2]];
+        let up = Math.ceil(sum/2);
+        let res = [], rescurr = [1, 2], left = 1, right = 2, sumcerr = 3;
+        while (left > 0 && left <= up && right > 0 && right <= up) {
+            console.log('sumcerr----------',sumcerr);
+            console.log('rescurr----------',rescurr);
+            if (sumcerr < sum) {
+                right++;
+                rescurr.push(right);
+                sumcerr += right;
+            } else if (sumcerr > sum) {
+                sumcerr -= left;
+                left++;
+                rescurr.shift();
+            } else {
+                res.push(rescurr.concat());
+                console.log('res------------------------', res);
+                right++;
+                sumcerr += right;
+                rescurr.push(right);
+            }
+        }
+        return res;
+    }
+    console.log(FindContinuousSequence(9));
+</script>
+</body>
+</html>

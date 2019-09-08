@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>把数组排成最小的数</title>
+</head>
+<body>
+<script>
+    function PrintMinNumber(numbers) {
+        numbers.sort((a, b) => {
+            a = a.toString();
+            b = b.toString();
+            if (parseInt(a + b) > parseInt(b + a)){
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        return numbers.join('');
+    }
+    console.log(PrintMinNumber([3,32,321]));
+</script>
+</body>
+</html>

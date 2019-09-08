@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    //原型链继承
+    // function Father(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    // Father.prototype.getName = function () {
+    //     console.log(this.name);
+    // };
+    // function Child(job) {
+    //     this.job = job;
+    // }
+    // //继承
+    // Child.prototype = new Father();
+    // //定义自己的原型方法
+    // Child.prototype.getJob = function () {
+    //     console.log(this.job);
+    // };
+
+    // 构造函数继承
+    // function Father(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    //     this.getAge = function () {
+    //         console.log(this.age);
+    //     }
+    // }
+    // Father.prototype.getName = function () {
+    //     console.log(this.name);
+    // };
+    // function Child(job) {
+    //     this.job = job;
+    //     //可向父级传参
+    //     //父级原型方法子类型不可见
+    //     //父级构造函数中方法子类型可见，
+    //     Father.call(this, 'zhangsan', 20);
+    // }
+    // Child.prototype.getJob = function () {
+    //     console.log(this.job);
+    // };
+    // console.log(new Child());
+
+    //组合式继承
+    // function Father(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    // Father.prototype.getName = function () {
+    //     console.log(this.name);
+    // };
+    // function Child(job) {
+    //     this.job = job;
+    //     //继承属性
+    //     Father.call(this, 'zhangsan', 20);
+    // }
+    // //继承方法
+    // //原型中有父级属性，继承了两次
+    // Child.prototype = new Father();
+    // Child.prototype.getJob = function () {
+    //     console.log(this.job);
+    // };
+    // let child = new Child();
+    // console.log(child);
+
+    //原型式继承
+    //用来当做原型的目标对象
+    let father = {
+        name: 'zhengsan',
+        age: 20,
+        getName: function () {
+            console.log(this.name);
+        }
+    };
+    let child = Object.create(father, {sex: {value: 'boy'}});
+    //子定义自己的属性和方法
+    child.job = 'teacher';
+    child.getJob = function () {
+        console.log(this.job);
+    };
+    console.log(child);
+
+    //寄生式继承
+    // let father = {
+    //     name: 'zhengsan',
+    //     age: 20,
+    //     getName: function () {
+    //         console.log(this.name);
+    //     }
+    // };
+    // function createChild (father) {
+    //     let child = Object.create(father);
+    //     //子定义自己的属性和方法
+    //     child.job = 'teacher';
+    //     child.getJob = function () {
+    //         console.log(this.job);
+    //     };
+    //     return child;
+    // }
+    // let child = createChild(father);
+    // console.log(child);
+
+    //寄生组合式继承
+    // function Father(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    // Father.prototype.getName = function () {
+    //     console.log(this.name);
+    // };
+    // function Child(job) {
+    //     Father.call(this);
+    //     this.job = job;
+    // }
+    // //寄生组合式的基本模式
+    // //父的原型给子的原型
+    // function inherit (child, father) {
+    //     let prototpye = Object.create(father.prototype);
+    //     child.prototype = prototpye;
+    //     prototpye.constructor = child;
+    // }
+    // inherit(Child, Father);
+    // Child.prototype.getJob = function () {
+    //     console.log(this.job);
+    // };
+    // let childA = new Child('teacher');
+    // console.log(childA);
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据流中的中位数</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    function Insert(num) {
+        arr.push(num);
+        arr.sort((a,b)=>a-b)
+    }
+    function GetMedian(){
+        let len = arr.length;
+        if (len === 0) return 0;
+        if (len % 2 === 1) return arr[Math.floor(len/2)];
+        if (len % 2 === 0) return (arr[len/2] + arr[len/2 - 1])/2
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>98. 验证二叉搜索树</title>
+</head>
+<body>
+<script>
+    //inheritedMin下界, inheritedMax上界
+    var isValidBSTHelper = function(root,inheritedMin,inheritedMax) {
+        if (!root) { return true; }
+        if (inheritedMin!==null&&root.val<=inheritedMin) { return false; }
+        if (inheritedMax!==null&&root.val>=inheritedMax) { return false; }
+        return isValidBSTHelper(root.left,inheritedMin,root.val)
+            &&isValidBSTHelper(root.right,root.val,inheritedMax);
+    };
+    var isValidBST = function(root) {
+        return isValidBSTHelper(root,null,null);
+    };
+    console.log(isValidBST([2,1,3]));
+</script>
+</body>
+</html>

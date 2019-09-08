@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组中出现次数超过一半的数字</title>
+</head>
+<style>
+    .wrap {
+        overflow: hidden;
+    }
+    p {
+        color: #f55;
+        background: #fcc;
+        width: 200px;
+        line-height: 100px;
+        text-align:center;
+        margin: 100px;
+    }
+</style>
+<body>
+<p>Haha</p>
+<div class="wrap">
+    <p>Hehe</p>
+</div>
+<script>
+    function MoreThanHalfNum_Solution(numbers) {
+        if (numbers.length === 0) return 0;
+        if (numbers.length === 1) return numbers[0];
+        let halfLen = Math.floor(numbers.length / 2);
+        let map = new Map();
+        for (let i = 0; i < numbers.length; i++) {
+            if (map.has(numbers[i])) {
+                let count = map.get(numbers[i]);
+                count++;
+                map.set(numbers[i], count);
+                if (map.get(numbers[i]) > halfLen) {
+                    return numbers[i]
+                }
+            }else {
+                map.set(numbers[i], 1);
+            }
+        }
+
+        // for (let key of map.keys()) {
+        //     console.log(key);
+        //     if (map.get(key) > halfLen) {
+        //         return key;
+        //     }
+        // }
+        console.log(map);
+        return 0;
+    }
+    console.log(MoreThanHalfNum_Solution([1,1,2,3,2,2,2,5,4,2]));
+</script>
+</body>
+</html>

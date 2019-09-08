@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>49. 字母异位词分组</title>
+</head>
+<body>
+<script>
+    var groupAnagrams = function(strs) {
+        let map = {};
+        for (let str of strs) {
+            let s = str.split('').sort().join('');
+            if (map[s] === undefined) {
+                map[s] = [str];
+            }else {
+                map[s].push(str);
+            }
+        }
+        let res = [];
+        for (let key in map) {
+            res.push(map[key]);
+        }
+        return res;
+    };
+    console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+</script>
+</body>
+</html>

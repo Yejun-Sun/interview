@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>122. 买卖股票的最佳时机 II</title>
+</head>
+<body>
+<script>
+    var maxProfit = function(prices) {
+        if (prices.length === 0) return 0;
+        let profit = 0;
+        prices.reduce((curr, next) => {
+            if (next > curr) {
+                profit += next - curr;
+            }
+            return next;
+        });
+        return profit;
+    };
+</script>
+</body>
+</html>

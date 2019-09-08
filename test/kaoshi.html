@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kaoshi</title>
+</head>
+<body>
+<script>
+    function deepClone(obj) {
+        if (obj instanceof RegExp) {
+            return new RegExp(obj);
+        }
+        if (obj instanceof Date) {
+            return new Date(obj);
+        }
+        if (typeof obj !== 'object' || obj === null) {
+            return obj;
+        }
+        let t = new obj.constructor();
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                t[key] = deepClone(obj[key]);
+            }
+        }
+        return t;
+    }
+    let a = {
+        id: 123,
+        name: {
+            name1: 'zhangsan',
+            name2: 'lisi'
+        },
+        getname: function () {
+            console.log(this.name.name1);
+        },
+        age: new RegExp(/1/),
+        date: new Date(),
+    }
+    a.class = a.id;
+    let b = deepClone(a);
+
+    console.log(a);
+    console.log(b);
+
+
+</script>
+</body>
+</html>

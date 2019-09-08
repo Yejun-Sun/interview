@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三栏布局</title>
+</head>
+<style>
+    /*----------float-----------*/
+    /*.left, .right {*/
+        /*background: #ff5555;*/
+        /*width: 200px;*/
+        /*height: 500px;*/
+        /*opacity: 0.8;*/
+    /*}*/
+    /*.left {*/
+        /*float: left;*/
+    /*}*/
+    /*.right {*/
+        /*float: right;*/
+    /*}*/
+    /*.center {*/
+        /*background-clip: content-box;*/
+        /*background: green;*/
+        /*height: 500px;*/
+        /*margin: 0 200px;*/
+        /*opacity: 0.8;*/
+        /*border: black solid 2px;*/
+    /*}*/
+
+    /*----------float(2)-----------*/
+    /*.left, .right {*/
+        /*background: #ff5555;*/
+        /*float: left;*/
+        /*width: 200px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+    /*.center {*/
+        /*background: green;*/
+        /*float: left;*/
+        /*width: calc(100% - 400px);*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+
+    /*----------flex-----------*/
+    html, body {
+        height: 100%;
+    }
+    .box {
+        display: flex;
+        height: 100%;
+    }
+    .left, .right {
+        background: #ff5555;
+        width: 200px;
+        opacity: 0.5;
+    }
+    .center {
+        flex: 1;
+        background: green;
+        opacity: 0.5;
+    }
+
+    /*----------定位-----------*/
+    /*.box {*/
+        /*position: relative;*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+    /*}*/
+    /*.left, .right{*/
+        /*position: absolute;*/
+        /*background: #ff5555;*/
+        /*width: 200px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+
+    /*}*/
+    /*.left {*/
+        /*left: 0;*/
+        /*top: 0;*/
+    /*}*/
+    /*.right {*/
+        /*right: 0;*/
+        /*top: 0;*/
+    /*}*/
+    /*.center {*/
+        /*background: green;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+        /*margin: 0 200px;*/
+    /*}*/
+
+    /*----------双飞翼-----------*/
+    /*.col {*/
+        /*float: left;*/
+    /*}*/
+    /*#main {*/
+          /*background: green;*/
+          /*width: 100%;*/
+          /*height: 500px;*/
+          /*opacity: 0.5;*/
+      /*}*/
+    /*#center {*/
+        /*margin: 0 200px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+    /*#left, #right {*/
+        /*background: #ff5555;*/
+        /*width: 200px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+    /*#left {*/
+        /*margin-left: -100%;*/
+    /*}*/
+    /*#right {*/
+        /*margin-left: -200px;*/
+    /*}*/
+
+    /*----------圣杯-----------*/
+    /*#box {*/
+        /*padding: 0 200px;*/
+    /*}*/
+    /*.col {*/
+        /*position: relative;*/
+        /*float: left;*/
+    /*}*/
+    /*#center {*/
+        /*background: green;*/
+        /*width: 100%;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+        /*word-wrap: break-word;*/
+    /*}*/
+    /*#left, #right {*/
+        /*background: #ff5555;*/
+        /*width: 200px;*/
+        /*height: 500px;*/
+        /*opacity: 0.5;*/
+    /*}*/
+    /*#left {*/
+        /*margin-left: -100%;*/
+        /*left: -200px;*/
+    /*}*/
+    /*#right {*/
+        /*margin-left: -200px;*/
+        /*right: -200px;*/
+    /*}*/
+</style>
+<body>
+<!--<div id="box">-->
+    <!--<div id="main" class="col">-->
+        <!--<div id="center">center</div>-->
+    <!--</div>-->
+    <!--<div id="left" class="col">left</div>-->
+    <!--<div id="right" class="col">right</div>-->
+<!--</div>-->
+
+<!--<div id="box">-->
+    <!--&lt;!&ndash;双飞翼&ndash;&gt;-->
+    <!--&lt;!&ndash;<div id="main" class="col">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="center" >center</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div id="left" class="col">left</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div id="right" class="col">right</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;圣杯&ndash;&gt;-->
+    <!--<div id="center" class="col">centeraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>-->
+    <!--<div id="left" class="col">left</div>-->
+    <!--<div id="right" class="col">right</div>-->
+<!--</div>-->
+<div class="box">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+</div>
+
+
+</body>
+</html>

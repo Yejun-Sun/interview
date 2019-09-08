@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>顺时针打印矩阵</title>
+</head>
+<body>
+<script>
+    function printMatrix(matrix) {
+        let rows = matrix.length, cols = matrix[0].length;
+        let minX = 0, maxX = rows-1, minY = 0, maxY = cols-1;
+        let x = 0, y = 0, count = 0;
+        let res = [];
+        while (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+            switch (count) {
+                case 0: {
+                    while (y <= maxY) {
+                        res.push(matrix[x][y]);
+                        y++;
+                    }
+                    y--;
+                    x++;
+                    minX++;
+                    count++;
+                    break;
+                }
+                case 1: {
+                    while (x <= maxX) {
+                        res.push(matrix[x][y]);
+                        x++;
+                    }
+                    x--;
+                    y--;
+                    maxY--;
+                    count++;
+                    break;
+                }
+                case 2: {
+                    while (y >= minY) {
+                        res.push(matrix[x][y]);
+                        y--;
+                    }
+                    y++;
+                    x--;
+                    maxX--;
+                    count++;
+                    break;
+                }
+                case 3: {
+                    while (x >= minX) {
+                        res.push(matrix[x][y]);
+                        x--;
+                    }
+                    x++;
+                    y++;
+                    minY++;
+                    count = 0;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+</script>
+</body>
+</html>

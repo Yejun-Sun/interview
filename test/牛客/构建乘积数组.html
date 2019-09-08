@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构建乘积数组</title>
+</head>
+<body>
+<script>
+    function multiply(array) {
+        let B = [];
+        for (let i = 0; i < array.length; i++) {
+            let temp = array[i];
+            array[i] = 1;
+            B[i] = array.reduce((prev, curr) => {
+                return prev*curr;
+            });
+            array[i] = temp;
+        }
+        return B;
+    }
+    console.log(multiply([1,2,3,4,5]));
+</script>
+</body>
+</html>

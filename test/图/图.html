@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图</title>
+</head>
+<body>
+<script>
+    let myNodes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+    let nodes = [];
+    let nodeList = new Map();
+    function addNodes(v) {
+        nodes.push(v);
+        nodeList.set(v, []);
+    }
+    function addEage(v, w) {
+        nodeList.get(v).push(w);
+        nodeList.get(w).push(v);
+    }
+    for (let i = 0; i < myNodes.length; i++) {
+        addNodes(myNodes[i]);
+    }
+    addEage('A', 'B');
+    addEage('A', 'C');
+    addEage('A', 'D');
+    addEage('B', 'E');
+    addEage('B', 'F');
+    addEage('C', 'D');
+    addEage('C', 'G');
+    addEage('D', 'H');
+    addEage('D', 'G');
+    addEage('E', 'I');
+
+    let type = [];
+    let path = [], d = [];
+    for (let i = 0; i < myNodes.length; i++) {
+        type[myNodes[i]] = '*';
+        d[myNodes[i]] = 0;
+        path[myNodes[i]] = null;
+    }
+    //广度优先
+    // function BFS(v, callbak) {
+    //     let queue = [];
+    //     queue.push(v);
+    //     while (queue.length > 0) {
+    //         let u = queue.shift();
+    //         let neighbors = nodeList.get(u);
+    //         type[u] = '/';
+    //         for (let i = 0; i < neighbors.length; i++) {
+    //             let w = neighbors[i];
+    //             if (type[w] === '*') {
+    //                 queue.push(w);
+    //                 type[w] = '/';
+    //                 d[w] = d[u]+1;
+    //                 path[w] = u
+    //             }
+    //         }
+    //         type[u] = '-';
+    //         if (callbak) {
+    //             callbak(u);
+    //         }
+    //     }
+    //     console.log('instance:', d);
+    //     console.log('path', path);
+    // }
+
+    function print(u) {
+        console.log(u);
+    }
+    // BFS(myNodes[0]);
+
+    //深度优先
+    function DFS(callback) {
+        for (let i = 0; i < myNodes.length; i++) {
+            if (type[myNodes[i]] === '*') {
+                dfsVisit(myNodes[i], type, callback);
+            }
+        }
+    }
+    function dfsVisit(u, type, callback) {
+        type[u] = '/';
+        if (callback) {
+            callback(u);
+        }
+        let neughbors = nodeList.get(u);
+        for (let i = 0; i < neughbors.length; i++) {
+            let w = neughbors[i];
+            if (type[w] === '*') {
+                dfsVisit(w, type, callback);
+            }
+        }
+        type[u] = '-';
+    }
+    DFS(print);
+</script>
+</body>
+</html>

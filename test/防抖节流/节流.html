@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+</head>
+<body>
+<button onclick="jieliu()">点我</button>
+<script>
+    // let run = true;
+    // function jieliu() {
+    //     if (!run) {
+    //         return
+    //     }
+    //     run = false;
+    //     setTimeout(() => {
+    //         console.log('节流函数执行');
+    //         run = true;
+    //     },2000);
+    // }
+    //定时器版
+    let time;
+    function jieliu() {
+        if (!time) {
+           time = setTimeout(() => {
+               time = null;
+               console.log('节流函数执行');
+           },2000);
+        }
+    }
+    //时间戳版
+    // let prev = 0;
+    // function jieliu() {
+    //     let now = Date.now();
+    //     if (now - prev > 2000) {
+    //         console.log('节流函数执行');
+    //         prev = now;
+    //     }
+    // }
+</script>
+</body>
+</html>

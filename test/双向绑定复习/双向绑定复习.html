@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定复习</title>
+</head>
+<body>
+<input type="text"/>
+<p id="test">{{value}}</p>
+<script>
+    let obj = {};
+
+    let input = document.querySelector('input');
+    let p = document.querySelector('test');
+    let value;
+    input.oninput = function (e) {
+        value = e.target.value;
+    };
+
+    let observed = observe(obj);
+
+    function observe(target) {
+        let proxy = new Proxy(target, {
+            get: function (target, property) {
+                console.log('get');
+                return target[property];
+            },
+            set: function (target, property, newValue) {
+                console.log('set');
+                target.innerHTML = newValue;
+            }
+        });
+        return proxy;
+    }
+
+</script>
+</body>
+</html>

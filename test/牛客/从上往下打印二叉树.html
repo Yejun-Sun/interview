@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>从上往下打印二叉树</title>
+</head>
+<body>
+<script>
+    function PrintFromTopToBottom(root) {
+        if(root == null) {
+            return [];
+        }
+        let arr = [], arr2 = [];
+        arr.push(root);
+        while(arr.length > 0) {
+            let temp = arr.shift();
+            arr2.push(temp.val);
+            if(temp.left) {
+                arr.push(temp.left);
+            }
+            if(temp.right) {
+                arr.push(temp.right);
+            }
+        }
+        return arr2;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>清除浮动</title>
+</head>
+<style>
+    #left {
+        float: left;
+        background: darksalmon;
+        width: 100px;
+        height: 100px;
+    }
+    #right {
+        background: bisque;
+        width: 200px;
+        height: 200px;
+    }
+    #top {
+        background: #c3c3c3;
+        float: left;
+        width: 300px;
+        height: 100px;
+    }
+    .clearfix:after, .clearfix:before {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    .clearfix {
+        zoom: 1;          /*IE*/
+    }
+</style>
+<body>
+<div id="top"></div>
+<div id="box" class="clearfix">
+    <div id="left"></div>
+</div>
+<div id="right"></div>
+</body>
+</html>

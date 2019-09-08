@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8. 字符串转换整数 (atoi)</title>
+</head>
+<body>
+<script>
+    var myAtoi = function(str) {
+        return Math.max(Math.min(parseInt(str) || 0, Math.pow(2, 31)-1), -Math.pow(2, 31));
+    };
+    console.log(myAtoi(-42));
+</script>
+</body>
+</html>

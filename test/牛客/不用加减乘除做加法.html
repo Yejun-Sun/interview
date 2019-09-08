@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不用加减乘除做加法</title>
+</head>
+<body>
+<script>
+    function Add(num1, num2) {
+        let a = num1^num2;
+        let b = (num1 & num2)<<1;
+        while (b) {
+            num1 = a;
+            num2 = b;
+            a = num1^num2;
+            b = (num1 & num2)<<1;
+        }
+        return a;
+    }
+    console.log(Add(14, 6));
+</script>
+</body>
+</html>

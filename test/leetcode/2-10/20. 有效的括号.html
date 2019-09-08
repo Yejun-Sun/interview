@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20. 有效的括号</title>
+</head>
+<body>
+<script>
+    var isValid = function(s) {
+        let st = [];
+        for (let l of s) {
+            if ((i = '([{}])'.indexOf(l)) > -1) {
+                if (st[st.length - 1] + i === 5) {
+                    st.length--;
+                }else {
+                    st.push(i);
+                }
+            }
+        }
+        return st.length === 0;
+    };
+    console.log(isValid('()]}'));
+</script>
+</body>
+</html>

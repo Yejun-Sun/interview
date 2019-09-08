@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>124. 二叉树中的最大路径和</title>
+</head>
+<body>
+<script>
+    var maxPathSum = function(root) {
+        let max = -Number.MAX_VALUE;
+        getMaxSum(root);
+        return max;
+        function getMaxSum(node) {
+            if (!node) return 0;
+            let leftSum = getMaxSum(node.left);
+            let rightSum = getMaxSum(node.right);
+            max = Math.max(max, node.val + leftSum + rightSum);
+            return Math.max(0, node.val + leftSum, node.val + rightSum);
+        }
+    };
+</script>
+</body>
+</html>

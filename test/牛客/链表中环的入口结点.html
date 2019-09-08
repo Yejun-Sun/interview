@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>链表中环的入口结点</title>
+</head>
+<body>
+<script>
+    function EntryNodeOfLoop(pHead) {
+        if (!pHead) return null;
+        let v, obj = {};
+        while (pHead) {
+            v = pHead.val;
+            if (!obj[v]) {
+                obj[v] = 1;
+                pHead = pHead.next;
+            }else {
+                return pHead;
+            }
+        }
+    }
+</script>
+</body>
+</html>

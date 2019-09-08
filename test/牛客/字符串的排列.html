@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串的排列</title>
+</head>
+<body>
+<script>
+    function Permutation(str)
+    {
+        var res = [];
+        if(str.length <= 0)return res;
+        var sortTemp = '';
+        var arr = str.split('');
+        res = sortString(arr, sortTemp, res);
+        return res
+    }
+    function sortString(arr, sortTemp, res){
+        if(arr.length == 0)res.push(sortTemp);
+        var isRepeted = {};
+        for(var i = 0; i < arr.length; i++){
+            if(!isRepeted[arr[i]]){
+                var temp = arr.splice(i, 1)[0];
+                sortTemp += temp;
+                sortString(arr, sortTemp, res);
+                arr.splice(i, 0, temp);
+                sortTemp = sortTemp.slice(0, sortTemp.length - 1);
+                isRepeted[temp] = true;
+            }
+        }
+        return res
+    }
+    // function Permutation(str) {
+    //     let arr = str.split('');
+    //     let res = [];
+    //     let help = (curr, remain) => {
+    //         if (remain.length === 0) {
+    //             res.push(curr.join(''));
+    //         }else {
+    //             for (let i = 0; i < remain.length; i++) {
+    //                 curr.push(remain[i]);
+    //
+    //             }
+    //         }
+    //     };
+    //     help([],arr);
+    // }
+</script>
+</body>
+</html>

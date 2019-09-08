@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>78.子集</title>
+</head>
+<body>
+<script>
+    var subsets = function(nums) {
+        var lists = [];
+        for (var i = 0; i < nums.length; i++) {
+            var num = nums[i];
+            var max = lists.slice().length;
+            lists.push([num]);
+            for (var j = 0; j < max; j++) {
+                var list = lists[j].slice();
+                list.push(num);
+                lists.push(list);
+            }
+        }
+        lists.push([]);
+        return lists;
+    };
+    console.log(subsets([1,2,3]))
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寻找字符串中出现次数最多的字母</title>
+</head>
+<body>
+<script>
+    function most(str) {
+        let res = [], max = 0, parm;
+        for (let i = 0; i < str.length; i++) {
+            let m = str[i];
+            if (!res[m]) {
+                res[m] = 1;
+            } else {
+                res[m]++;
+            }
+        }
+        for (let key in res) {
+            max = Math.max(res[key], max);
+            if (max === res[key]) {
+                parm = key;
+            }
+        }
+        console.log(res);
+        console.log(max);
+        console.log(parm);
+        return max;
+    }
+    most('ababbbccccc');
+</script>
+</body>
+</html>

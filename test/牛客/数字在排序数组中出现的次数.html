@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字在排序数组中出现的次数</title>
+</head>
+<body>
+<script>
+    function GetNumberOfK(data, k) {
+        data.sort((a, b) => a - b);
+        let left = data.indexOf(k);
+        if (left === -1) {
+            return 0;
+        }
+        let right = data.lastIndexOf(k);
+        return right - left + 1;
+    }
+    console.log(GetNumberOfK([1,3,3,3,3,4,5],2));
+</script>
+</body>
+</html>

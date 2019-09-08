@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象数组去重</title>
+</head>
+<body>
+<script>
+    // let arr = [{
+    //     name: 'zhangsan',
+    //     age: 10
+    // },{
+    //     name: 'lisi',
+    //     age: 20,
+    //     id: 123
+    // }];
+    // function quchong(arr, type) {
+    //     if (arr.length === 0) {
+    //         return arr;
+    //     } else {
+    //         if (type) {
+    //             let obj = {};
+    //             let newArr = arr.reduce((cur, next) => {
+    //                 obj[next.type] ? '' : obj[next.type] = true && cur.push(next);
+    //                 return cur;
+    //             });
+    //             return newArr;
+    //         } else {
+    //             return Array.from(new Set(arr));
+    //         }
+    //     }
+    // }
+    // console.log(quchong(arr, 'age'));
+    // let arr = [1, 1, 2, 2, 3 ];
+    // console.log([...new Set(arr)]);
+    // console.log(['1', '2', '3'].map(parseInt));
+    // let foo = new Foo('Mike');
+    // class Foo{
+    //     constructor(name) {
+    //         this.name = name;
+    //     }
+    // }
+    //
+    // console.log(foo);
+    let arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+    // let b = arr.toString().split(',');
+    // b.map((item) => {
+    //     return Number(item);
+    // });
+    // b.sort((a, b) => {a - b});
+    // console.log([...new Set(b)]);
+    // console.log(typeof b[0])
+    // function flatten(arr) {
+    //     return arr.toString().split(',').map(function(item) {
+    //         return Number(item);
+    //     })
+    // }
+    // console.log(flatten(arr));
+    for (var i = 0; i <= 5; i++) {
+         // setTimeout(function() {
+         //     console.log( i );
+         // }, i*1000);
+         console.log( ' i : ' , i );
+    }
+    // console.log(i);
+</script>
+</body>
+</html>

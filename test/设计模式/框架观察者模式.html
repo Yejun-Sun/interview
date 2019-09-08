@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>框架观察者模式</title>
+</head>
+<body>
+<div id="app">
+    <p my-value="name"></p>
+    <p my-value="name"></p>
+    <p my-value="age"></p>
+    <p my-value="phone"></p>
+</div>
+
+<script>
+    let data = {
+        name: 'Jim',
+        age: 5,
+    };
+
+    let subject = {};
+
+    compile('app');
+    obverser(data);
+
+    function set (key, val) {
+        // data[key] = val;
+        subject[key].forEach(item => {
+            item();
+        })
+    }
+
+    function compile (id) {
+        let nodes = document.getElementById(id).children;
+        for (let i = 0; i < nodes.length; i++) {
+            let node = nodes[i];
+            if (node.hasAttribute('my-value')) {
+                let property = node.getAttribute('my-value');
+                if (!subject.hasOwnProperty(property)) {
+                    subject[property] = [];
+                }
+                subject[property].push(() => {
+                    node.innerHTML = data[property];
+                });
+                node.innerHTML = data[property] || '';
+            }
+        }
+    }
+    //使用 defineProperty 做 UI 状态同步
+    // function obverser(data) {
+    //     Object.keys(data).forEach((key) => {
+    //         let value = data[key];
+    //         Object.defineProperty(data, key, {
+    //             get () {
+    //                 return value;
+    //             },
+    //             set (newValue) {
+    //                 if (value !== newValue) {
+    //                     console.log('我被劫持了');
+    //                     value = newValue;
+    //                     //自动执行set
+    //                     set(key, value);
+    //                 }
+    //             }
+    //         })
+    //     })
+    // }
+
+    //使用 Proxy 代理
+    function obverser (state) {
+        data = new Proxy(state, {
+            get (target, property) {
+                return target[property];
+            },
+            set (target, property, newValue) {
+                target[property] = newValue;
+                set(property, newValue);
+            },
+        })
+    }
+</script>
+</body>
+</html>

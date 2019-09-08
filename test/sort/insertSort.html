@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>insetSort</title>
+</head>
+<body>
+<script>
+    function insertSort(arr) {
+        let temp,j;
+        for (let i = 1; i < arr.length; i++) {
+            j = i;
+            temp = arr[i];
+            while (j > 0 && arr[j - 1] > temp) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
+        }
+        return arr;
+    }
+    console.log(insertSort([5,4,1,3,2]))
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3. 无重复字符的最长子串</title>
+</head>
+<body>
+<script>
+
+    function lengthOfLongestSubstring(s) {
+        let count = [];
+        let arr = [];
+        let flag = -1;
+        if(s == '') {
+            return 0;
+        }
+        for (let i = 0; i < s.length; i++) {
+            // console.log(i);
+            if(arr.join('').indexOf(s[i]) == -1) {
+                arr.push(s[i]);
+                if(i == s.length - 1) {
+                    count.push(arr.join('').length);
+                }
+            }else {
+                count.push(arr.join('').length);
+                arr = [];
+                i = flag + 1;
+                flag++;
+            }
+        }
+        count.sort(function (a,b) {
+            return b-a;
+        });
+        return count[0];
+    }
+    // console.log('arr-------------',arr);
+    // console.log('count-----------',count);
+    console.log(lengthOfLongestSubstring('alqebriavxoo'))
+</script>
+</body>
+</html>

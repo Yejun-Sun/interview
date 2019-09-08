@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5. 最长回文子串</title>
+</head>
+<body>
+<script>
+    function longestPalindrome(s) {
+        if (s.length === 1) {
+            return s
+        }
+        let str = '#' + s.split('').join('#') + '#';
+        let rl = [];
+        let mx = 0;
+        let pos = 0;
+        let ml = 0;
+        for (let i = 0; i < str.length; i++){
+            //i是中心位置下标
+            rl[i] = 1;
+            // if (i < mx) {
+            //     rl[i] = Math.min(rl[2 * pos - i], mx - i);
+            // } else {
+            //     rl[i] = 1;
+            // }
+            while (i - rl[i] > 0 && i + rl[i] < str.length && str[i - rl[i]] === str[i + rl[i]]) {
+                rl[i]++;
+            }
+            // if (rl[i] + i - 1 > mx) {
+            //     mx = rl[i] + i - 1;
+            //     pos = i;
+            // }
+            if (ml < rl[i]) {
+                ml = rl[i];
+                sub = str.substring(i - rl[i]+1, i + rl[i]);
+            }
+        }
+        return sub.split('#').join('').trim();
+    }
+    console.log(longestPalindrome('mbbhab121ba1235'));
+    // console.log(longestPalindrome('abgfa'));
+    // console.log(str);
+    // console.log(str.indexOf(s[i]));
+    // function ifhuiwen(s) {
+    //     let s1 = s.split('').reverse().join('');
+    //     if (s1 === s) return true;
+    //     return false;
+    // }
+    // function longestPalindrome(s) {
+    //     if (s.length === 1) return s;
+    //     let res = '';
+    //     let hui = '';
+    //     let str = '#' + s.split('').join('#') + '#';
+    //     console.log('str-----------', str);
+    //     for (let i = 0; i < s.length; i++) {
+    //         hui = s[i];
+    //         let j = i;
+    //         while (ifhuiwen(hui) && hui.length > res.length) {
+    //             res = hui;
+    //             j++;
+    //             hui = hui + s[j];
+    //         }
+    //         for (let j = i; j < s.length; j++) {
+    //             hui = hui + s[j];
+    //             console.log('hui------------',hui);
+    //             console.log(ifhuiwen(hui));
+    //             if (ifhuiwen(hui) && hui.length > res.length) {
+    //                 res = hui;
+    //             }
+    //         }
+    //     }
+    //     return res;
+    // }
+</script>
+</body>
+</html>

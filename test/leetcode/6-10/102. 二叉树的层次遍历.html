@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>102. 二叉树的层次遍历</title>
+</head>
+<body>
+<script>
+    var levelOrder = function(root) {
+        var result = [];
+        var level = 0;
+        traverse(root, level);
+        return result;
+
+        function traverse(root, level) {
+            if (root === null) {
+                return;
+            } else {
+                if (level >= result.length) {
+                    result[level] = [];
+                }
+                result[level].push(root.val);
+                traverse(root.left, level + 1);
+                traverse(root.right, level + 1);
+            }
+        }
+    };
+</script>
+</body>
+</html>

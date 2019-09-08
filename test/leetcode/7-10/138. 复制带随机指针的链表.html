@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>138. 复制带随机指针的链表</title>
+</head>
+<body>
+<script>
+    var copyRandomList = function(head) {
+        if (head === null) return head;
+        let map = new Map(), tmp = head;
+        while (tmp !== null) {
+            map.set(head, new Node(tmp.val, null, null));
+            tmp = tmp.next;
+        }
+        tmp = head;
+        while (tmp) {
+            map.get(tmp).next = tmp.next === null ? null : map.get(tmp.next);
+            map.get(tmp).random = tmp.random === null? null: map.get(tmp.random);
+            tmp = tmp.next;
+        }
+        return map.get(head);
+    };
+    let a = [25, {a: 1}, {b: 2}];
+    let b = ['name'];
+    let c = b.concat(a);
+    c[2].a = 4;
+    console.log(a);
+    console.log(c);
+</script>
+</body>
+</html>

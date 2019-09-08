@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>41.缺失的第一个正数</title>
+</head>
+<body>
+<script>
+    var firstMissingPositive = function(nums) {
+        nums.sort((a, b)=> a - b);
+        if (nums.length === 0 || nums[nums.length - 1] <= 0) return 1;
+        let k = 1;
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] > k) {
+                return k;
+            }
+            k = nums[i] < k ? k : k + 1;
+        }
+        return k;
+    };
+    console.log(firstMissingPositive([1,2,0]));
+</script>
+</body>
+</html>

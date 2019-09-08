@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>149. 直线上最多的点数</title>
+</head>
+<body>
+<script>
+    var maxPoints = function(points) {
+        if (points.length === 0) return 0;
+        if (points.length === 1) return 1;
+        if (points.length === 2) return 2;
+        let ratio = [];
+        for (let i = 0; i < points.length; i++) {
+            for (let j = i+1; j < points.length; j++) {
+                let currRatio = (points[j][1] - points[i][1])/(points[j][0] - points[i][0]);
+                ratio.push(currRatio);
+            }
+        }
+    };
+
+    //python
+    // def maxPoints(self, points):
+    //     l = len(points)
+    //     m = 0
+    //     for i in range(l):
+    //         dic = {'i': 1}
+    //         same = 0
+    //         for j in range(i+1, l):
+    //             tx, ty = points[j].x, points[j].y
+    //             if tx == points[i].x and ty == points[i].y:
+    //                 same += 1
+    //                 continue
+    //             if points[i].x == tx: slope = 'i'
+    //             else:slope = (points[i].y-ty) * 1.0 /(points[i].x-tx)
+    //             if slope not in dic: dic[slope] = 1
+    //             dic[slope] += 1
+    //         m = max(m, max(dic.values()) + same)
+    // return m
+</script>
+</body>
+</html>

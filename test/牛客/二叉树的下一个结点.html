@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树的下一个结点</title>
+</head>
+<body>
+<script>
+    function GetNext(pNode) {
+        if (pNode === null) return null;
+        if (pNode.right) {
+            let p = pNode.right;
+            while (p.left) {
+                p = p.left;
+            }
+            return p;
+        }
+        while (pNode.next) {
+            if (pNode === pNode.next.left) {
+                return pNode.next;
+            }
+            pNode = pNode.next;
+        }
+    }
+</script>
+</body>
+</html>

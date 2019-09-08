@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>19. 删除链表的倒数第N个节点</title>
+</head>
+<body>
+<script>
+    // function ListNode(val) {
+    //     this.val = val;
+    //     this.next = null;
+    // }
+    var removeNthFromEnd = function(head, n) {
+        let left, right = head, before;
+        left = before = {
+            next: head
+        };
+        while (n--) {
+            right = right.next;
+        }
+        while (right) {
+            right = right.next;
+            left = left.next;
+        }
+        left.next = left.next.next;
+        return before.next;
+    };
+</script>
+</body>
+</html>

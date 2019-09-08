@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>105. 从前序与中序遍历序列构造二叉树</title>
+</head>
+<body>
+<script>
+    var buildTree = function(preorder, inorder) {
+        var result = null;
+        if(preorder.length > 1) {
+            var root = preorder[0];
+            preorder.shift();
+            var index = inorder.indexOf(root);
+
+            var vinLeft = inorder.slice(0, index);
+            var vinRight = inorder.slice(index + 1);
+
+            var preLeft = preorder.slice(0, index);
+            var preRight = preorder.slice(index);
+            result = {
+                val: root,
+                left: buildTree(preLeft, vinLeft),
+                right: buildTree(preRight, vinRight)
+            }
+        }else if(preorder.length ===1) {
+            result= {
+                val: preorder[0],
+                left: null,
+                right: null
+            }
+        }
+        return result;
+    };
+</script>
+</body>
+</html>

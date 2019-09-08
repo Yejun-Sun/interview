@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>148. 排序链表</title>
+</head>
+<body>
+<script>
+
+    // class Solution:
+    // def sortList(self, head: ListNode) -> ListNode:
+    //     if not (head and head.next): return head
+    // pre, slow, fast = None, head, head
+    // while fast and fast.next: pre, slow, fast = slow, slow.next, fast.next.next
+    // pre.next = None
+    // return self.mergeTwoLists(*map(self.sortList, (head, slow)))
+    //
+    // def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+    //     if l1 and l2:
+    //     if l1.val > l2.val: l1, l2 = l2, l1
+    // l1.next = self.mergeTwoLists(l1.next, l2)
+    // return l1 or l2
+
+    var sortList = function(head) {
+        var ptr1 = head,
+            ptr2 = head,
+            len = 0, step = 1,
+            dummyHead = new ListNode();
+
+        dummyHead.next = head;
+
+// get the total length of the list
+        while (ptr1) {
+            len++;
+            ptr1 = ptr1.next;
+        }
+
+// bottom-up merge sort
+        while (step < len) {
+            ptr1 = dummyHead;
+            ptr2 = ptr1.next;
+
+            var pre1 = ptr1,
+                pre2 = null;
+
+            ptr1 = ptr1.next;
+            /**
+             * After initialization:
+             * (dummyHead|pre1)->(ptr1|ptr2)->....
+             */
+
+            // when list length is odd, ptr2 could be null
+            // when list length is even, ptr1 could be null
+            // these mostly happens in/after the last merge sort section
+            while (ptr1 && ptr2) {
+                // move ptr2 to the start of the second half of current merge sort range
+                for (var i = 0; i < step && ptr2; i++) {
+                    pre2 = ptr2;
+                    ptr2 = ptr2.next;
+                }
+
+                /** After moving ptr2:
+                 * dummyHead->....->(pre1)->(ptr1)->...(length = step - 1)...->(pre2)->(ptr2)->...(length = step)...->....
+                 */
+
+                /** Standard merge sort BEGIN **/
+
+                    // At the begining of merge sort, each half has *step* nodes
+                var remain1 = step,
+                    remain2 = step;
+
+                // Since ptr2 is always ahead of ptr1, make sure it's not null before merge all the time
+                while (remain1 && remain2 && ptr2) {
+                    if (ptr1.val <= ptr2.val) {
+                        pre1.next = ptr1;
+                        ptr1 = ptr1.next;
+                        pre1 = pre1.next;
+                        remain1--;
+                    } else {
+                        pre2.next = ptr2.next;
+                        ptr2.next = pre1.next;
+                        pre1.next = ptr2;
+                        pre1 = pre1.next;
+                        ptr2 = pre2.next;
+                        remain2--;
+                    }
+                }
+
+                // merge remaining nodes to the merged sequence
+                if (remain1 > 0) {
+                    while (remain1 !== 0 && ptr1) {
+                        pre1 = ptr1;
+                        ptr1 = ptr1.next;
+                        remain1--;
+                    }
+                    ptr2 = ptr1;
+                } else if (remain2 > 0) {
+                    while (remain2 !== 0 && ptr2) {
+                        pre2 = ptr2;
+                        ptr2 = ptr2.next;
+                        remain2--;
+                    }
+                    ptr1 = ptr2;
+                    pre1 = pre2;
+                }
+                /** Standard merge sort END **/
+            }
+            // double the length of each merge sort range
+            step *= 2;
+        }
+
+        return dummyHead.next;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>栈的压入、弹出序列</title>
+</head>
+<body>
+<script>
+    function IsPopOrder(pushV, popV) {
+        let arr1 = [];
+        for (let i = 0; i < pushV.length; i++) {
+            arr1.push(pushV[i]);
+            if (arr1[i] === popV[0]) {
+                arr1.pop();
+                popV.shift();
+                pushV.splice(i, 1);
+                i--;
+            }
+        }
+        if (arr1.join('') === popV.reverse().join('')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

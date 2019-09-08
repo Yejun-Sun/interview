@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>34. 在排序数组中查找元素的第一个和最后一个位置</title>
+</head>
+<body>
+<script>
+    var searchRange = function(nums, target) {
+        let left = search(nums, target, 0, nums.length - 1, true);
+        let right = left === -1 ? -1 : search(nums, target, left, nums.length - 1, false);
+        return [left, right];
+    };
+    var search = function(nums, target, low, high, isLeft = true) {
+        if (low > high) return -1;
+        let mid = Math.floor((low + high)/2);
+        if (target < nums[mid] || (target === nums[mid] && isLeft && nums[mid] === nums[mid - 1])) {
+            return search(nums, target, low, mid - 1, isLeft);
+        }else if (nums[mid] < target || (target === nums[mid] && !isLeft && nums[mid] === nums[mid + 1])) {
+            return search(nums, target, mid + 1, high, isLeft);
+        }
+        return mid;
+    };
+    console.log(searchRange([2,2], 2))
+</script>
+</body>
+</html>

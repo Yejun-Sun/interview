@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滑动窗口的最大值</title>
+</head>
+<body>
+<script>
+    function maxInWindows(num, size) {
+        if (num.length === 0) return [];
+        if (size === 0) return [];
+        let left = 0, right = 0, res = [];
+        for (let i=0; i<num.length-(size-1); i++) {
+            left = i;
+            right = i + (size-1);
+            let arr = num.slice(left, right+1);
+            let max = arr.reduce((prev, curr)=>{
+                return Math.max(prev, curr);
+            });
+            res.push(max);
+        }
+        return res;
+    }
+    console.log(maxInWindows([2,3,4,2,6,2,5,1], 1));
+</script>
+</body>
+</html>

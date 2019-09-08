@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按之字形顺序打印二叉树</title>
+</head>
+<body>
+<script>
+    function Print(root)
+    {
+        var result = [];
+        var level = 0;
+        traverse(root, level);
+        for (let i = 0; i < result.length; i++) {
+            if (i % 2 === 1) {
+                result[i].reverse();
+            }
+        }
+        return result;
+
+        function traverse(root, level) {
+            if (root === null) {
+                return;
+            } else {
+                if (level >= result.length) {
+                    result[level] = [];
+                }
+                result[level].push(root.val);
+                traverse(root.left, level + 1);
+                traverse(root.right, level + 1);
+            }
+        }
+    }
+</script>
+</body>
+</html>

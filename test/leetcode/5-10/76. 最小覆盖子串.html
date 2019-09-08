@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>76. 最小覆盖子串</title>
+</head>
+<body>
+<script>
+    function find(s, t) {
+        let arr = [];
+        for (let i = 0; i < t.length; i++) {
+            if (s.indexOf(t[i]) === -1) {
+                return false;
+            }else {
+                arr.push(s.indexOf(t[i]));
+            }
+        }
+        arr.sort((a, b)=>a - b);
+        console.log(arr);
+        return {left: arr[0], right: arr[arr.length - 1], nextLeft: arr[1]};
+    }
+    var minWindow = function(s, t) {
+        if (t.length ===1 && s.indexOf(t) !== -1) return t;
+        if (s.length < t.length) return '';
+        let left, right, flag;
+        if (find(s, t)) {
+            left = find(s, t).left;
+            right = find(s, t).right;
+            flag = find(s, t).nextLeft;
+        }
+        console.log('left, right, flag', left, right, flag);
+        let str = s.slice(left, right + 1);
+        console.log('str-------',str);
+        for (let i = left + 1; i <= str.length - t.length + 1; i++) {
+            let str2 = str.slice(i, str.length);
+            console.log('str2-------',str2);
+            if (find(str2, t)) {
+                console.log('find(str2, t)--------------',find(str2, t));
+                left = find(str2, t).left;
+                right = find(str2, t).right;
+                flag = find(str, t).nextLeft;
+                console.log('forleft, forright, forflag', left, right, flag);
+            }else {
+                break;
+            }
+        }
+        if (find(s.slice(flag, s.length), t)) {
+            return minWindow(s.slice(flag, s.length), t);
+        }else {
+            console.log('left---flag---right',left, flag, right);
+            return right - left + 1;
+        }
+    };
+    console.log(minWindow('Abc', 'bc'));
+</script>
+</body>
+</html>

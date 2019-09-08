@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉搜索树与双向链表</title>
+</head>
+<body>
+<script>
+    function Convert(pRootOfTree) {
+        if (pRootOfTree === null) return null;
+        if (pRootOfTree.left === null && pRootOfTree.right === null) return pRootOfTree;
+        let left = Convert(pRootOfTree.left);
+        let p = left;
+        while (p && p.right) {
+            p = p.right;
+        }
+        if (left) {
+            p.right = pRootOfTree;
+            pRootOfTree.left = p;
+        }
+        let right = Convert(pRootOfTree.right);
+        if (right) {
+            right.left = pRootOfTree;
+            pRootOfTree.right = right;
+        }
+        return left !== null ? left : pRootOfTree;
+    }
+</script>
+</body>
+</html>

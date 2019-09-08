@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10. 正则表达式匹配</title>
+</head>
+<body>
+<script>
+    var isMatch = function(s, p) {
+        let matched = s.match(new RegExp(p)) || [];
+        return matched.indexOf(s) > -1;
+    };
+    console.log(isMatch('aa', 'a'));
+</script>
+</body>
+</html>

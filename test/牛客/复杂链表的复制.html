@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复杂链表的复制</title>
+</head>
+<body>
+<script>
+    /**
+    *function RandomListNode(x){
+    *this.label = x;
+    *this.next = null;
+    *this.random = null;
+}   **/
+    function RandomListNode(x) {
+        this.label = x;
+        this.next = null;
+        this.random = null;
+    }
+
+    function Clone(pHead) {
+        if (pHead === null) return pHead;
+        let cloneHead = new RandomListNode(pHead.label);
+        cloneHead.label = pHead.label;
+        cloneHead.random = pHead.random;
+        cloneHead.next = Clone(pHead.next);
+        return cloneHead;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>128. 最长连续序列</title>
+</head>
+<body>
+<script>
+    var longestConsecutive = function(nums) {
+        if (nums.length === 0) return 0;
+        nums.sort((a, b)=>a-b);
+        let max = 1;
+        let res = 1;
+        nums.reduce((prev, curr) => {
+            if (curr - prev === 1) {
+                max++;
+            }else if (curr - prev === 0) {
+                return curr;
+            }else {
+                res = Math.max(max, res);
+                max = 1;
+            }
+            return curr;
+        });
+        res = Math.max(max, res);
+        return res;
+    };
+</script>
+</body>
+</html>

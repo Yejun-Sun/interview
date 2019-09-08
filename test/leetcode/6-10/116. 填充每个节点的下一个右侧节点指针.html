@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>116. 填充每个节点的下一个右侧节点指针</title>
+</head>
+<body>
+<script>
+    // var connect = function(root) {
+    //     if (root == null)
+    //         return root;
+    //     let queue = [];
+    //     queue.push(root);
+    //     while (queue.length) {
+    //         let prev = queue.shift(), tmp, len = queue.length;
+    //         for (let i = 0; i < len; i++) {
+    //             if (prev.left)
+    //                 queue.push(prev.left);
+    //             if (prev.right)
+    //                 queue.push(prev.right);
+    //             tmp = queue.shift();
+    //             prev.next = tmp;
+    //             prev = tmp
+    //         }
+    //         if (prev.left)
+    //             queue.push(prev.left);
+    //         if (prev.right)
+    //             queue.push(prev.right);
+    //         prev.next = null
+    //     }
+    //     return root
+    // };
+    var connect = (root) => {
+        recur(root);
+        return root;
+    };
+    function recur(level) {
+        if (level === null || level.left === null) {
+            return;
+        }
+        populate(level);
+        recur(level.left);
+    }
+    function populate(level) {
+        if (level === null) return;
+        level.left.next = level.right;
+        if (level.next !== null) {
+            level.right.next = level.next.left;
+        }
+        populate(level.next);
+    }
+
+    // var connect = (root) => {
+    //     recur(root);
+    //     return root;
+    // }
+    //
+    //
+    // function iter(root) {
+    //     let leftmost = root;
+    //
+    //     // Left most node at level
+    //     while (leftmost != null) {
+    //
+    //         let level = leftmost;
+    //
+    //         // At every level, set the children's "next"
+    //         // pointers and traverse the current level's next
+    //         // pointers set by previous iterations
+    //         while (level != null && level.left != null) {
+    //             level.left.next = level.right;
+    //             if (level.next != null) {
+    //                 level.right.next = level.next.left;
+    //             }
+    //             level = level.next;
+    //         }
+    //         leftmost = leftmost.left;
+    //     }
+    //     return root;
+    // };
+    //
+    //
+    // // Recursive version
+    // function recur (level) {
+    //
+    //     // This is a left
+    //     if (level === null || level.left === null) {
+    //         return;
+    //     }
+    //     // Populate the next edges at the children
+    //     // of the current level
+    //     populateLevel(level);
+    //
+    //
+    //     // This level is done, so move on to the next one
+    //     recur(level.left)
+    //
+    //
+    // }
+    //
+    // function populateLevel(level) {
+    //     if (level === null) {
+    //         return;
+    //     }
+    //     level.left.next = level.right;
+    //     if (level.next != null) {
+    //         level.right.next = level.next.left;
+    //     }
+    //     populateLevel(level.next)
+    // }
+</script>
+</body>
+</html>
